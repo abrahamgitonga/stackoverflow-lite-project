@@ -1,5 +1,5 @@
 CREATE OR ALTER PROCEDURE add_UpdateUser
-    @_id VARCHAR(255),
+    @id VARCHAR(255),
     @username VARCHAR
 (300),
     @email VARCHAR

@@ -8,7 +8,7 @@ BEGIN
 
     select
         _id,
-        author_id,
+        author,
         title,
         content,
         tags,

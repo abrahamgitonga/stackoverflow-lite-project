@@ -1,12 +1,12 @@
 CREATE
 OR ALTER PROCEDURE allQuestions
-    (@author_id varchar(300) = Null)
+    (@author varchar(300) = Null)
 AS
 BEGIN
     SET
     NOCOUNT ON;
 
-    if @author_id IS NOT NULL BEGIN
+    if @author IS NOT NULL BEGIN
         select
             q._id as question_id,
             q.author,
@@ -20,7 +20,7 @@ BEGIN
             left join answers a on a.question_id = q._id
         where
     q.is_deleted = 0
-            AND q.author = @author_id
+            AND q.author = @author
         group by
     q._id,
     q.author,

@@ -1,10 +1,10 @@
-create table questions
+CREATE TABLE questions
 (
-    _id VARCHAR(255) NOT NULL PRIMARY KEY,
-    title VARCHAR (255) NOT NULL,
+    _id INT IDENTITY NOT NULL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    author_id VARCHAR(255) FOREIGN KEY REFERENCES users(_id),
-    tags VARCHAR(300) NOT NULL DEFAULT '',
+    author INT FOREIGN KEY REFERENCES users,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    is_deleted BIT NOT NULL DEFAULT 0
+    is_deleted BIT NOT NULL DEFAULT 0,
+    tags VARCHAR(300) NOT NULL DEFAULT ''
 );
