@@ -1,0 +1,10 @@
+CREATE TABLE answers
+(
+    _id VARCHAR(255) NOT NULL PRIMARY KEY,
+    content TEXT NOT NULL,
+    author_id VARCHAR(255) FOREIGN KEY REFERENCES users(_id),
+    question VARCHAR(255) FOREIGN KEY REFERENCES questions(_id),
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    marked BIT DEFAULT 0,
+    is_deleted BIT NOT NULL DEFAULT 0
+);
