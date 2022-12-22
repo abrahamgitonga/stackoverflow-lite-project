@@ -24,7 +24,7 @@ CREATE TABLE questions
     _id VARCHAR(255) NOT NULL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    author VARCHAR(255) FOREIGN KEY REFERENCES users(_id),
+    author_id VARCHAR(255) FOREIGN KEY REFERENCES users(_id),
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     is_deleted BIT NOT NULL DEFAULT 0,
     tags VARCHAR(300) NOT NULL DEFAULT ''
@@ -61,16 +61,16 @@ CREATE TABLE votes
 );
 
 
--- IF OBJECT_ID('users', 'U') IS NOT NULL
--- DROP TABLE users
--- IF OBJECT_ID('questions', 'U') IS NOT NULL
--- DROP TABLE questions
--- IF OBJECT_ID('answers', 'U') IS NOT NULL
--- DROP TABLE answers
--- IF OBJECT_ID('comments', 'U') IS NOT NULL
--- DROP TABLE comments
--- IF OBJECT_ID('votes', 'U') IS NOT NULL
--- DROP TABLE votes
+IF OBJECT_ID('users', 'U') IS NOT NULL
+DROP TABLE users
+IF OBJECT_ID('questions', 'U') IS NOT NULL
+DROP TABLE questions
+IF OBJECT_ID('answers', 'U') IS NOT NULL
+DROP TABLE answers
+IF OBJECT_ID('comments', 'U') IS NOT NULL
+DROP TABLE comments
+IF OBJECT_ID('votes', 'U') IS NOT NULL
+DROP TABLE votes
 
 -- go;
 -- CREATE OR ALTER PROCEDURE dbo.usp_CreateOrUpdateUser

@@ -6,3 +6,5 @@ Begin
     from users
     where email = @email
 End
+
+EXEC getOneUser 'doe@mail.com'

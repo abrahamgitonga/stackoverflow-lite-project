@@ -38,22 +38,25 @@ const updateUser = async (req, res) => {
   }
 };
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await exec("getOneUser", { email });
-
-  const correct = await bcrypt.compare(password, user[0].password);
-  if (correct) {
-    let { id, email, username } = user[0];
- 
+  try {
     
-   
-    let payload = { id, email,  username };
-    let token = await jwt.sign(payload, process.env.SECRET, {
-      expiresIn: "14000s",
-    });
-    res.status(200).json({ token });
-  } else {
-    res.status(400).json({ error: "incorrect password" });
+    const { email, password } = req.body;
+    const user = await exec("getOneUser", { email });
+    // console.log(user)
+    const correct = await bcrypt.compare(password, user[0].password);
+    if (correct) {
+      let { id, email, username } = user[0];
+      let payload = { id, email,  username };
+      let token = await jwt.sign(payload, process.env.SECRET, {
+        expiresIn: "14000s",
+      });
+      res.status(200).json({ token });
+    } else {
+      res.status(401).json({ error: "invalid details" });
+    }
+  } catch (error) {
+      res.status(401).json({ error: error.message });
+    
   }
 };
 module.exports = {
